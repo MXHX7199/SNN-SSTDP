@@ -1,5 +1,5 @@
 <div style="text-align:center">
-<img src="sth\AFP.png" alt="AFP_Logo" width="700"/>
+<img src="sth\SSTDP-LOGO.png" alt="SSTDP_Logo" width="700"/>
 <h2>SSTDP: Supervised Spike Timing Dependent Plasticity for Efficient Spiking Neural Network Training</h2>
 </div>
 pytorch implementation of SSTDP for Efficient Spiking Neural Network Training
