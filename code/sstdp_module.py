@@ -251,3 +251,19 @@ class StdpConv2d(nn.Conv2d):
         else:
             input_pad = input
         return self.container(input_pad, self.weight, self.bias, self.stride)
+
+class StdpLinearNetMnist(nn.Module):
+    def __init__(self, t_max=255, tau=None, a=0.8, b=0.2, threshold=100., **kwargs):
+        super().__init__()
+        self.t_max = t_max
+        self.layer1 = StdpLinear(in_features=784, out_features=400, t_max=t_max, tau=tau, threshold=threshold,
+                                 initial_range=5.0, a=a, b=b, retrieve=True, thermal=False, lr_ratio=1.0)
+        # kwargs['first_initial']
+        self.layer2 = StdpLinear(in_features=400, out_features=10, t_max=t_max, tau=tau, threshold=threshold,
+                                 initial_range=48., a=a, b=b)
+    def forward(self, x):
+        x = x.reshape(-1, 784)
+        x = self.layer1(x)
+        x = self.layer2(x)
+
+        return x
