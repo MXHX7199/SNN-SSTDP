@@ -11,7 +11,7 @@ import numpy as np
 import readline
 import argparse
 from tqdm import tqdm
-import stdp_module
+import sstdp_module
 import os
 import lr_scheduler as ls
 
@@ -96,9 +96,9 @@ def main():
             drop_last=True)
 
         if args.net_type == 'linear':
-            net = stdp_module.StdpLinearNetMnist(t_max=args.T, tau=args.tau, threshold=args.threshold, a=args.A, b=args.B, first_initial=args.temp_a)
+            net = sstdp_module.StdpLinearNetMnist(t_max=args.T, tau=args.tau, threshold=args.threshold, a=args.A, b=args.B, first_initial=args.temp_a)
         elif args.net_type == 'conv':
-            net = stdp_module.StdpConvNetMnist(t_max=args.T, tau=args.tau, threshold=args.threshold, a=args.A, b=args.B)
+            net = sstdp_module.StdpConvNetMnist(t_max=args.T, tau=args.tau, threshold=args.threshold, a=args.A, b=args.B)
         else:
             raise ValueError(f"Undefined network type {args.net_type}")
     else:
